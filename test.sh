@@ -59,6 +59,7 @@ python tests/runtests.py --settings=testapp.settings --noinput --keepdb \
     one_to_one \
     or_lookups \
     order_with_respect_to \
+    ordering \
     pagination \
     prefetch_related \
     queryset_pickle \
