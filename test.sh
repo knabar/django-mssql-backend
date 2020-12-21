@@ -13,6 +13,8 @@ git checkout $DJANGO_VERSION
 pip install -r tests/requirements/py3.txt
 
 python tests/runtests.py --settings=testapp.settings --noinput --keepdb \
+    aggregation \
+    bulk_create \
     custom_columns \
     custom_managers \
     custom_methods \

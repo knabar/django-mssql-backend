@@ -12,7 +12,10 @@ class ExcludeTestSuiteRunner(DiscoverRunner):
         for case in suite:
             cls = case.__class__
             for attr in cls.__dict__:
-                if f'{cls.__module__}.{cls.__name__}.{attr}' in EXCLUDED_TESTS:
+                if not attr.startswith('test_'):
+                    continue
+                fullname = f'{cls.__module__}.{cls.__name__}.{attr}'
+                if len(list(filter(fullname.startswith, EXCLUDED_TESTS))):
                     setattr(cls, attr, skip(getattr(cls, attr)))
 
         return suite
