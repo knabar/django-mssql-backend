@@ -8,12 +8,16 @@ set -e
 DJANGO_VERSION="$(python -m django --version)"
 
 cd django
-git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-git checkout $DJANGO_VERSION
-pip install -r tests/requirements/py3.txt
+git fetch -q --depth=1 origin +refs/tags/*:refs/tags/*
+git checkout -q $DJANGO_VERSION
+pip install -q -r tests/requirements/py3.txt
 
-python tests/runtests.py --settings=testapp.settings --noinput --keepdb \
+python tests/runtests.py --settings=testapp.settings --noinput \
     aggregation \
+    aggregation_regress \
+    annotations \
+    backends \
+    basic \
     bulk_create \
     custom_columns \
     custom_managers \
@@ -26,6 +30,7 @@ python tests/runtests.py --settings=testapp.settings --noinput --keepdb \
     defer \
     distinct_on_fields \
     empty \
+    expressions_case \
     expressions_window \
     extra_regress \
     field_deconstruction \
@@ -40,6 +45,7 @@ python tests/runtests.py --settings=testapp.settings --noinput --keepdb \
     generic_relations_regress \
     get_earliest_or_latest \
     get_object_or_404 \
+    introspection \
     known_related_objects \
     m2m_and_m2o \
     m2m_intermediary \
